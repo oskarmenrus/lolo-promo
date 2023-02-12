@@ -1,0 +1,6 @@
+.idea
+/vendor/
+
+log.log
+lastCode.txt
+.DS_Store

@@ -1,0 +1,12 @@
+FROM --platform=linux/amd64 php:7.4.33-cli
+
+RUN apt-get update && apt-get install -y libpq-dev libzip-dev zip libicu-dev \
+    && docker-php-ext-install zip \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo_pgsql
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+WORKDIR /lolo-promo
